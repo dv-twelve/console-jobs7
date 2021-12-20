@@ -1,0 +1,29 @@
+using System;
+using System.Linq;
+
+namespace ConsoleApp
+{
+    class Program
+    {
+        static void Main()
+        {
+            Console.WriteLine("Введите строку: ");
+            string line = Console.ReadLine();
+
+            //заменяем знаки препинания на пробелы
+            line = new string(line.Select(c => char.IsPunctuation(c) ? ' ' : c).ToArray());
+
+            //разделяем строку на слова
+            string[] words = line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+            Console.WriteLine("Искомые слова:");
+            foreach (string word in words)
+            {
+                if (char.IsUpper(word[0]))
+                    Console.WriteLine(word);
+            }
+
+            Console.ReadKey();
+        }
+    }
+}
